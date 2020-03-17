@@ -21,13 +21,6 @@
 </head>
 
 <body>
-  <!-- Preloader -->
-  <div id="preloader">
-    <div class="preloader-thumbnail">
-      <img src="{% static './img/core-img/preloader.png' %}" alt="">
-    </div>
-  </div>
-
   <!-- ***** Header Area Start ***** -->
   <header class="header-area">
     <!-- Main Header Start -->
@@ -55,12 +48,15 @@
             <!-- Nav Start -->
             <div class="classynav">
               <ul id="nav">
-                <li class="current-item"><a href="./index.html">Home</a></li>
+                <li class="current-item"><a href="{% url 'index' %}">Home</a></li>
+                <li class="current-item"><a href="{% url 'album' %}">Albums</a></li>
+                <li class="current-item"><a href="{% url 'register' %}">Register</a></li>
+                <li class="current-item"><a href="{% url 'login' %}">Login</a></li>
               </ul>
 
               <!-- Top Search Area -->
               <div class="top-search-area">
-                <form action="index.html" method="post">
+                <form action="{% url 'index' %}" method="post">
                   <input type="search" name="top-search-bar" class="form-control" placeholder="Search and hit enter...">
                   <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
                 </form>
@@ -83,6 +79,12 @@
     </div>
   </header>
   <!-- ***** Header Area End ***** -->
+  <!-- Preloader -->
+  <div id="preloader">
+    <div class="preloader-thumbnail">
+      <img src="{% static './img/core-img/preloader.png' %}" alt="">
+    </div>
+  </div>
 
   <!-- ***** Welcome Area Start ***** -->
   <section class="welcome-area">
@@ -116,7 +118,7 @@
                   </div>
                   <!-- Music Player -->
                   <div class="poca-music-player">
-                    <audio preload="auto" controls>
+                    <audio preload="auto" controls id="x1" onplay="duniyaa()">
                       <source src="{% static 'audio/duniyaa.mp3' %}">
                     </audio>
                   </div>
@@ -173,7 +175,7 @@
               </div>
               <!-- Music Player -->
               <div class="poca-music-player">
-                <audio preload="auto" controls>
+                <audio preload="auto" controls id="x2" onplay="pal()">
                   <source src="{% static 'audio/PalPal.mp3' %}">
                 </audio>
               </div>
@@ -203,7 +205,7 @@
               </div>
               <!-- Music Player -->
               <div class="poca-music-player">
-                <audio preload="auto" controls>
+                <audio preload="auto" controls id="x3" onplay="butta()">
                   <source src="{% static 'audio/butta.mp3' %}">
                 </audio>
               </div>
@@ -233,7 +235,7 @@
               </div>
               <!-- Music Player -->
               <div class="poca-music-player">
-                <audio preload="auto" controls>
+                <audio preload="auto" controls id="x4" onplay="machayenge()">
                   <source src="{% static 'audio/machayenge.mp3' %}">
                 </audio>
               </div>
@@ -263,7 +265,7 @@
               </div>
               <!-- Music Player -->
               <div class="poca-music-player">
-                <audio preload="auto" controls>
+                <audio preload="auto" controls id="x5" onplay="zara()">
                   <source src="{% static 'audio/zara.mp3' %}">
                 </audio>
               </div>
@@ -280,35 +282,6 @@
         </div>
 
         <!-- Single gallery Item -->
-        <div class="col-12 col-md-6 single_gallery_item tech tutor wow fadeInUp" data-wow-delay="0.2s">
-          <!-- Welcome Music Area -->
-          <div class="poca-music-area style-2 d-flex align-items-center flex-wrap">
-            <div class="poca-music-thumbnail">
-              <img src="{% static './img/bg-img/34.jpg' %}" alt="" style="width : 800px ; height : 303px">
-            </div>
-            <div class="poca-music-content text-center">
-              <h2>Tu hi yaar mera</h2>
-              <h3>Artist : Arjit Singh</h3>
-              <div class="music-meta-data">
-              </div>
-              <!-- Music Player -->
-              <div class="poca-music-player">
-                <audio preload="auto" controls>
-                  <source src="{% static 'audio/tuhiyaar.mp3' %}">
-                </audio>
-              </div>
-              <!-- Likes, Share & Download -->
-              <div class="likes-share-download d-flex align-items-center justify-content-between">
-                <a href="#"><i class="fa fa-heart" aria-hidden="true"></i> Like (29)</a>
-                <div>
-                  <a href="#" class="mr-4"><i class="fa fa-share-alt" aria-hidden="true"></i> Share(04)</a>
-                  <a href="#"><i class="fa fa-download" aria-hidden="true"></i> Download (12)</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Single gallery Item -->
         <div class="col-12 col-md-6 single_gallery_item tech wow fadeInUp" data-wow-delay="0.2s">
           <!-- Welcome Music Area -->
           <div class="poca-music-area style-2 d-flex align-items-center flex-wrap">
@@ -322,7 +295,7 @@
               </div>
               <!-- Music Player -->
               <div class="poca-music-player">
-                <audio preload="auto" controls>
+                <audio preload="auto" controls id="x6" onplay="dheeme()">
                   <source src="{% static 'audio/dheeme.mp3' %}">
                 </audio>
               </div>
@@ -355,7 +328,7 @@
               <!-- Music Player -->
               <div class="poca-music-player">
                 <audio preload="auto" controls>
-                  <source src="{{album.song.url}}">
+                  <source src="{{album.song.url}}" alt="">
                 </audio>
               </div>
               <!-- Likes, Share & Download -->
@@ -390,6 +363,7 @@
           </div>
         </div>
       </div>
+
 
       <div class="row justify-content-around">
         <!-- Single Featured Guest -->
@@ -506,6 +480,9 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
   <script src="{% static 'js/poca.bundle.js' %}"></script>
   <!-- Active js -->
   <script src="{% static 'js/default-assets/active.js' %}"></script>
+
+  <script src="{% static 'js/playpause.js'%}"></script>
+
 
 </body>
 
